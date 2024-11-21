@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <style>
+        p{
+            display: inline;
+        }
+    </style>
+
 </head>
 <body>
-    <h1>Teste do meu siteeeeee</h1>
+    <p id="paragrafo">DESCRIÇÃO: </p>
+    <input id="descricao_in" placeholder="Insira a descrição"> <br><br>
+    <p>MARCA:       </p>
+    <input id="marca_in" placeholder="Insira a marca"> <br><br>
+    <p>MODELO:     </p>
+    <input id="modelo_in" placeholder="Insira o modelo"> <br><br>
+    <p>PREÇO:         </p>
+    <input id="preco_in" placeholder="Insira o preço"> <br><br>
+    <button id="cadastrar_btn">CADASTRAR</button> <br><br>
+    <p id="teste_p">Teste</p>
+
+    <py-script>
+    
+    import re
+    
+    padrao_descricao = r"[a-zA-Z]+"
+    padrao_marca = r"[a-zA-Z]+"
+    padrao_modelo = r"[a-zA-Z0-9 .-]+"
+    padrao_preco = "[0-9.]+"
+
+    def minhaFuncao(x):
+        entrada_descricao = Element("descricao_in").element.value
+        entrada_marca = Element("marca_in").element.value
+        entrada_modelo = Element("modelo_in").element.value
+        entrada_preco = Element("preco_in").element.value
+
+        if re.match(padrao_descricao, entrada_descricao) and re.match(padrao_marca, entrada_marca):
+            Element("teste_p").element.textContent = entrada_descricao + entrada_marca
+        else:
+            Element("teste_p").element.textContent = "Erro!"
+
+    Element("cadastrar_btn").element.onclick = minhaFuncao
+    </py-script>
 </body>
 </html>
